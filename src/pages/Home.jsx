@@ -1,11 +1,10 @@
 import React,{ useState, useEffect} from 'react';
 import axios from 'axios';
-// import {CustomCard} from '../components/CustomCard';
 import CustomCard from '../components/CustomCard';
 const Home = () => {
 
 
-  const [data,setData] =useState();
+  const [data,setData] =useState([]);
   const [loading,setLoading ]= useState(true )
 
   useEffect(()=>{
@@ -38,7 +37,7 @@ const Home = () => {
     <div>
       <h1>Home Page</h1>
       <p>Welcome to the Home Page</p>
-      <div style={{display:'flex',flexWrap:'wrap'}}>
+      <div style={{display:'flex',flexWrap:'wrap',justifyContent:'space-around',gap:10}}>
         {data && data.map((details)=>(
 
           <CustomCard key={details.id} title={details.title} description={details.description} image={details.image}
