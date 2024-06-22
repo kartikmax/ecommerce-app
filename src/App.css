@@ -1,0 +1,21 @@
+nav {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: #eee;
+}
+
+ul {
+  display: flex;
+  width: 30%;
+  justify-content: space-between;
+}
+
+li {
+  list-style: none;
+}
+
+.text {
+  text-decoration: none;
+  color: lightcoral;
+}
