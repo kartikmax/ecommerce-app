@@ -4,18 +4,18 @@ import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import {
+  Alert,
   Button,
+  Card,
+  CardActions,
+  CardContent,
+  CardMedia,
   CircularProgress,
   Grid,
   Rating,
+  Snackbar,
   Stack,
   Typography,
-  Card,
-  CardMedia,
-  CardContent,
-  CardActions,
-  Snackbar,
-  Alert,
 } from "@mui/material";
 import { AddShoppingCartOutlined } from "@mui/icons-material";
 import { addItem } from "../redux/slices/cartSlice";

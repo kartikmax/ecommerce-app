@@ -1,13 +1,11 @@
 import React from "react";
-import {
-  Button,
-  CardMedia,
-  Divider,
-  Stack,
-  Typography,
-} from "@mui/material";
+import { Button, CardMedia, Divider, Stack, Typography } from "@mui/material";
 import { useDispatch } from "react-redux";
-import { incrementQuantity, decrementQuantity, removeItem } from "../redux/slices/cartSlice";
+import {
+  incrementQuantity,
+  decrementQuantity,
+  removeItem,
+} from "../redux/slices/cartSlice";
 
 const ListUi = ({ id, image, title, description, price, quantity }) => {
   const dispatch = useDispatch();
@@ -46,11 +44,19 @@ const ListUi = ({ id, image, title, description, price, quantity }) => {
         <Typography variant="body1">{description.substring(0, 50)}</Typography>
       </div>
       <Stack direction="row" justifyContent="space-between" alignItems="center">
-        <Button variant="outlined" onClick={handleDecrement} style={{ border: "1px solid" }}>
+        <Button
+          variant="outlined"
+          onClick={handleDecrement}
+          style={{ border: "1px solid" }}
+        >
           -
         </Button>
         <div style={{ padding: "0 20px" }}>{quantity}</div>
-        <Button variant="outlined" onClick={handleIncrement} style={{ border: "1px solid" }}>
+        <Button
+          variant="outlined"
+          onClick={handleIncrement}
+          style={{ border: "1px solid" }}
+        >
           +
         </Button>
       </Stack>

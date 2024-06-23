@@ -1,10 +1,8 @@
-import { Typography, Stack, Divider, Button } from "@mui/material";
-import React from "react";
-import { useSelector, useDispatch } from "react-redux";
 import ListUi from "../components/ListUi";
-// import { clearCart } from "../slices/cartSlice";
-// import { clearCart } from "../redux/cartSlice";
+import React from "react";
+import { Typography, Stack, Divider, Button } from "@mui/material";
 import { clearCart } from "../redux/slices/cartSlice";
+import { useSelector, useDispatch } from "react-redux";
 
 const Cart = () => {
   const cartItems = useSelector((state) => state.cart.items);

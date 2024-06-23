@@ -10,29 +10,25 @@ import {
 } from "@mui/material";
 import { Favorite, FavoriteBorder } from "@mui/icons-material";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { addToWishlist, removeFromWishlist } from "../redux/slices/wishList";
 
 function CustomCard({ title, description, image, price, rating, id }) {
+  const dispatch = useDispatch();
+  const wishlist = useSelector((state) => state.wishlist);
+  const isFavorite = wishlist.some((item) => item.id === id);
   const [showMore, setShowMore] = useState(false);
-  const [favorite, setFavorite] = useState(
-    localStorage.getItem(`wishlist-${id}`) ? true : false
-  );
 
   const handleShowMore = () => {
     setShowMore(!showMore);
   };
 
   const handleFavorite = () => {
-    const newFavoriteStatus = !favorite;
-    setFavorite(newFavoriteStatus);
-
-    // if (newFavoriteStatus) {
-    //   localStorage.setItem(
-    //     `wishlist-${id}`,
-    //     JSON.stringify({ id, title, description, image, price, rating })
-    //   );
-    // } else {
-    //   localStorage.removeItem(`wishlist-${id}`);
-    // }
+    if (isFavorite) {
+      dispatch(removeFromWishlist({ id }));
+    } else {
+      dispatch(addToWishlist({ id, title, description, image, price, rating }));
+    }
   };
 
   const truncatedDescription =
@@ -54,13 +50,13 @@ function CustomCard({ title, description, image, price, rating, id }) {
       }}
     >
       <Link style={{ textDecoration: "none" }} to={`details/${id}`}>
-      <CardMedia
-        component="img"
-        height="200"
-        image={image}
-        alt={title}
-        sx={{ objectFit: "contain", padding: 2 }}
-      />
+        <CardMedia
+          component="img"
+          height="200"
+          image={image}
+          alt={title}
+          sx={{ objectFit: "contain", padding: 2 }}
+        />
         <CardContent sx={{ padding: 2, flexGrow: 1 }}>
           <Typography variant="h6" component="div" sx={{ marginBottom: 1 }}>
             {title.substring(0, 20)}
@@ -107,7 +103,7 @@ function CustomCard({ title, description, image, price, rating, id }) {
           aria-label="add to wishlist"
           onClick={handleFavorite}
         >
-          {favorite ? (
+          {isFavorite ? (
             <Favorite sx={{ color: "red" }} />
           ) : (
             <FavoriteBorder sx={{ color: "gray" }} />
