@@ -23,7 +23,6 @@ const Home = () => {
     fetchData();
   }, []);
 
-  console.log(data);
 
   if (loading)
     return (
