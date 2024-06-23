@@ -18,7 +18,7 @@ import {
   Alert,
 } from "@mui/material";
 import { AddShoppingCartOutlined } from "@mui/icons-material";
-import { addItem } from "../slices/cartSlice";
+import { addItem } from "../redux/slices/cartSlice";
 
 const Details = () => {
   const { itemId } = useParams();

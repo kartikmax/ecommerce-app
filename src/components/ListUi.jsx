@@ -7,9 +7,7 @@ import {
   Typography,
 } from "@mui/material";
 import { useDispatch } from "react-redux";
-// import { incrementQuantity, decrementQuantity, removeItem } from "../redux/cartSlice";
-
-import { incrementQuantity, decrementQuantity, removeItem } from "../slices/cartSlice";
+import { incrementQuantity, decrementQuantity, removeItem } from "../redux/slices/cartSlice";
 
 const ListUi = ({ id, image, title, description, price, quantity }) => {
   const dispatch = useDispatch();
