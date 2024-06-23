@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import wishlistReducer from "../slices/wishList";
 import cartReducer from "../slices/cartSlice";
-import { loadState, saveState } from "../localStorage";
+import { loadState, saveState } from "../localStorage.js";
 
 const preloadedState = {
   wishlist: loadState(),
