@@ -25,14 +25,14 @@ function CustomCard({ title, description, image, price, rating, id }) {
     const newFavoriteStatus = !favorite;
     setFavorite(newFavoriteStatus);
 
-    if (newFavoriteStatus) {
-      localStorage.setItem(
-        `wishlist-${id}`,
-        JSON.stringify({ id, title, description, image, price, rating })
-      );
-    } else {
-      localStorage.removeItem(`wishlist-${id}`);
-    }
+    // if (newFavoriteStatus) {
+    //   localStorage.setItem(
+    //     `wishlist-${id}`,
+    //     JSON.stringify({ id, title, description, image, price, rating })
+    //   );
+    // } else {
+    //   localStorage.removeItem(`wishlist-${id}`);
+    // }
   };
 
   const truncatedDescription =
@@ -43,16 +43,17 @@ function CustomCard({ title, description, image, price, rating, id }) {
   return (
     <Card
       sx={{
-        width: 300,
+        background: "white",
+        borderRadius: 2,
+        boxShadow: 3,
         display: "flex",
         flexDirection: "column",
-        background: "white",
-        boxShadow: 3,
-        borderRadius: 2,
+        height: "100%",
         overflow: "hidden",
-        height: "100%", // Ensure all cards have the same height
+        width: 300,
       }}
     >
+      <Link style={{ textDecoration: "none" }} to={`details/${id}`}>
       <CardMedia
         component="img"
         height="200"
@@ -60,7 +61,6 @@ function CustomCard({ title, description, image, price, rating, id }) {
         alt={title}
         sx={{ objectFit: "contain", padding: 2 }}
       />
-      <Link style={{ textDecoration: "none" }} to={`details/${id}`}>
         <CardContent sx={{ padding: 2, flexGrow: 1 }}>
           <Typography variant="h6" component="div" sx={{ marginBottom: 1 }}>
             {title.substring(0, 20)}

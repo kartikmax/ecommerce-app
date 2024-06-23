@@ -1,6 +1,8 @@
+// src/pages/Details.js
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useDispatch } from "react-redux";
 import {
   Button,
   CircularProgress,
@@ -12,15 +14,20 @@ import {
   CardMedia,
   CardContent,
   CardActions,
+  Snackbar,
+  Alert,
 } from "@mui/material";
 import { AddShoppingCartOutlined } from "@mui/icons-material";
+import { addItem } from "../slices/cartSlice";
 
 const Details = () => {
   const { itemId } = useParams();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -39,6 +46,21 @@ const Details = () => {
     fetchData();
   }, [itemId]);
 
+  const handleAddToCart = () => {
+    dispatch(addItem(data));
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
+  };
+
+  
+
   if (loading)
     return (
       <div
@@ -55,7 +77,7 @@ const Details = () => {
 
   return (
     <div style={{ padding: "20px" }}>
-      <Grid container spacing={4}>
+       <Grid container spacing={4}>
         <Grid item xs={12} md={4}>
           <Card>
             <CardMedia
@@ -74,6 +96,7 @@ const Details = () => {
                 variant="contained"
                 endIcon={<AddShoppingCartOutlined />}
                 fullWidth
+                onClick={handleAddToCart}
               >
                 Add to Cart
               </Button>
@@ -81,7 +104,7 @@ const Details = () => {
                 variant="outlined"
                 color="secondary"
                 fullWidth
-                onClick={() => navigate('/')}
+                onClick={() => navigate("/")}
                 sx={{ marginTop: 1 }}
               >
                 Back
@@ -98,16 +121,28 @@ const Details = () => {
           </Typography>
           <Stack direction="row" alignItems="center" spacing={1}>
             <Rating name="read-only" value={data.rating.rate} readOnly />
-            <Typography>
-              ({data.rating.count} reviews)
-            </Typography>
+            <Typography>({data.rating.count} reviews)</Typography>
           </Stack>
           <Typography variant="body1" color="text.primary" paragraph>
             Available offers:
           </Typography>
-         
         </Grid>
       </Grid>
+      <Snackbar
+        open={open}
+        autoHideDuration={4000}
+        onClose={handleClose}
+        anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+      >
+        <Alert
+          onClose={handleClose}
+          severity="success"
+          variant="filled"
+          sx={{ width: "100%" }}
+        >
+          Item is added to the cart.
+        </Alert>
+      </Snackbar>
     </div>
   );
 };

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import CustomCard from "../components/CustomCard";
-import { Link } from "react-router-dom";
 import { CircularProgress } from "@mui/material";
 
 const Home = () => {
@@ -36,7 +35,7 @@ const Home = () => {
           justifyContent: "center",
         }}
       >
-        <CircularProgress style={{ width: 100, height: 100 }} />;
+        <CircularProgress style={{ width: 100, height: 100 }} />
       </div>
     );
 
@@ -54,20 +53,15 @@ const Home = () => {
       >
         {data &&
           data.map((details) => (
-            // <Link
-            //   style={{ textDecoration: "none" }}
-            //   key={details.id}
-            //   to={`details/${details.id}`}
-            // >
-              <CustomCard
-                id={details.id}
-                title={details.title}
-                description={details.description}
-                image={details.image}
-                price={details.price}
-                rating={details.rating}
-              />
-            // </Link>
+            <CustomCard
+              key={details.id}
+              id={details.id}
+              title={details.title}
+              description={details.description}
+              image={details.image}
+              price={details.price}
+              rating={details.rating}
+            />
           ))}
       </div>
     </>

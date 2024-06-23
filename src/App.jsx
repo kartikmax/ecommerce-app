@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import Details from "./pages/Details";
 import Cart from "./pages/Cart";
 import "./App.css";
+import Wishlist from "./pages/Wishlist";
 
 const App = () => {
   return (
@@ -16,8 +17,8 @@ const App = () => {
             </Link>
           </li>
           <li>
-            <Link className="text" to="/details">
-              Details
+            <Link className="text" to="/wishlist">
+              Wishlist
             </Link>
           </li>
           <li>
@@ -29,6 +30,7 @@ const App = () => {
       </nav>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/wishlist" element={<Wishlist />} />
         <Route path="/details/:itemId" element={<Details />} />
         <Route path="/cart" element={<Cart />} />
       </Routes>
